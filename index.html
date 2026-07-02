@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntelMax — Soluções Tecnológicas | Armário Inteligente</title>
+<meta name="description" content="O Armário Inteligente IntelMax protege estoques de alto valor contra furtos e assaltos, com abertura por biometria, monitoramento em tempo real e integração com CFTV e alarme.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+  :root{
+    --blue:#0081ff;
+    --blue-dark:#0062c4;
+    --blue-deep:#0a2a4d;
+    --navy:#021322;
+    --bg:#f5f8fc;
+    --text:#22344a;
+    --muted:#5b7089;
+    --white:#ffffff;
+    --radius:16px;
+    --shadow:0 10px 30px rgba(12,58,114,.10);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+  img,svg{max-width:100%;display:block}
+  a{text-decoration:none;color:inherit}
+  .container{width:min(1140px,92%);margin:0 auto}
+  section{padding:80px 0}
+  h2{font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--navy);line-height:1.2}
+  .tag{display:inline-block;background:rgba(30,123,224,.12);color:var(--blue-dark);font-weight:700;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1rem;border-radius:999px;margin-bottom:1rem}
+  .lead{color:var(--muted);font-size:1.08rem;max-width:640px;margin-top:1rem}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(12,58,114,.08)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:.6rem}
+  .brand-name{font-size:1.35rem;font-weight:800;color:var(--blue);letter-spacing:-.02em}
+  .brand-sub{display:block;font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blue-dark);margin-top:-4px}
+  nav ul{display:flex;gap:1.8rem;list-style:none}
+  nav a{font-weight:600;color:var(--text);font-size:.95rem;transition:color .2s}
+  nav a:hover{color:var(--blue)}
+  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;padding:.8rem 1.7rem;border-radius:999px;transition:background .2s,transform .2s;box-shadow:0 6px 18px rgba(30,123,224,.35)}
+  .btn:hover{background:var(--blue-dark);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--blue);box-shadow:none;border:2px solid var(--blue)}
+  .btn.ghost:hover{background:rgba(30,123,224,.08)}
+  .nav .btn{padding:.6rem 1.3rem;font-size:.9rem}
+  .menu-toggle{display:none;background:none;border:0;cursor:pointer;font-size:1.6rem;color:var(--navy)}
+
+  /* Hero */
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--blue-deep) 55%,var(--blue-dark) 100%);color:#fff;padding:110px 0 90px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-180px;top:-180px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(30,123,224,.35),transparent 70%)}
+  .hero .container{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;position:relative;z-index:1}
+  .hero h1{font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.15;font-weight:800}
+  .hero h1 span{color:#6db4ff}
+  .hero p{margin:1.4rem 0 2rem;color:#c7d8ee;font-size:1.12rem;max-width:540px}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero .btn.ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+  .hero .btn.ghost:hover{background:rgba(255,255,255,.1)}
+  .hero-stats{display:flex;gap:2.5rem;margin-top:2.8rem;flex-wrap:wrap}
+  .hero-stats strong{display:block;font-size:1.6rem;color:#6db4ff}
+  .hero-stats span{font-size:.85rem;color:#9db8d8}
+  .hero-art{display:flex;justify-content:center}
+  .hero-photo{position:relative;margin:0}
+  .hero-photo img{height:440px;width:auto;border-radius:18px;border:1px solid rgba(109,180,255,.25);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .hero-photo figcaption{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(2,19,34,.75);backdrop-filter:blur(4px);color:#c7d8ee;font-size:.78rem;padding:.35rem .9rem;border-radius:999px;border:1px solid rgba(109,180,255,.25)}
+
+  /* Problema */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+  .problem-card{background:var(--white);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow);display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem}
+  .problem-card .ico{flex:0 0 46px;height:46px;border-radius:12px;background:rgba(30,123,224,.12);display:flex;align-items:center;justify-content:center}
+  .problem-card h3{color:var(--navy);font-size:1.05rem;margin-bottom:.2rem}
+  .problem-card p{color:var(--muted);font-size:.95rem}
+
+  /* Como funciona */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-top:3rem}
+  .step{background:var(--white);border-radius:var(--radius);padding:2.2rem 1.8rem;box-shadow:var(--shadow);position:relative}
+  .step-num{position:absolute;top:-18px;left:1.8rem;width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(30,123,224,.4)}
+  .step h3{color:var(--navy);margin:.8rem 0 .5rem;font-size:1.1rem}
+  .step p{color:var(--muted);font-size:.95rem}
+  .step .ico{width:52px;height:52px;border-radius:14px;background:rgba(30,123,224,.12);display:flex;align-items:center;justify-content:center}
+
+  /* Recursos */
+  .dark{background:linear-gradient(160deg,var(--navy),var(--blue-deep));color:#fff}
+  .dark h2{color:#fff}
+  .dark .lead{color:#b9cde6}
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+  .feature{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:1.8rem;transition:transform .2s,background .2s}
+  .feature:hover{transform:translateY(-4px);background:rgba(255,255,255,.1)}
+  .feature .ico{width:48px;height:48px;border-radius:12px;background:rgba(109,180,255,.18);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+  .feature h3{font-size:1.05rem;margin-bottom:.4rem}
+  .feature p{color:#b9cde6;font-size:.92rem}
+
+  /* Modelos */
+  .models{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+  .model{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .model-visual{height:300px;overflow:hidden}
+  .model-visual img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .model:hover .model-visual img{transform:scale(1.04)}
+  .model-body{padding:2rem}
+  .model-body h3{color:var(--navy);font-size:1.3rem}
+  .model-body .cap{color:var(--blue);font-weight:700;font-size:.95rem;margin:.2rem 0 1.2rem}
+  .spec-table{width:100%;border-collapse:collapse;font-size:.93rem}
+  .spec-table td{padding:.55rem 0;border-bottom:1px solid #e8eef6}
+  .spec-table td:first-child{color:var(--muted)}
+  .spec-table td:last-child{text-align:right;font-weight:700;color:var(--navy)}
+  .model-note{text-align:center;color:var(--muted);margin-top:2rem;font-size:.95rem}
+
+  /* CTA / contato */
+  .cta-box{background:linear-gradient(135deg,var(--blue),var(--blue-dark));border-radius:24px;padding:3.5rem 3rem;color:#fff;box-shadow:0 20px 50px rgba(18,89,171,.35);display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+  .cta-box h2{color:#fff;margin-bottom:.8rem}
+  .cta-box p{color:#d7e6f8;max-width:560px;margin:0 0 2rem}
+  .cta-img{border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.3)}
+  @media(max-width:900px){.cta-box{grid-template-columns:1fr;text-align:center}.cta-box p{margin:0 auto 2rem}}
+  .cta-box .btn{background:#fff;color:var(--blue-dark);box-shadow:0 8px 20px rgba(0,0,0,.2)}
+  .cta-box .btn:hover{background:#eaf2fc}
+
+  footer{background:var(--navy);color:#9db8d8;padding:2.5rem 0;font-size:.9rem}
+  footer .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+
+  @media(max-width:900px){
+    .hero .container,.split,.models{grid-template-columns:1fr}
+    .steps,.features{grid-template-columns:1fr}
+    nav ul{display:none;position:absolute;top:72px;left:0;right:0;background:#fff;flex-direction:column;padding:1.2rem 5%;gap:1rem;border-bottom:1px solid rgba(12,58,114,.1)}
+    nav ul.open{display:flex}
+    .menu-toggle{display:block}
+    .hero-art{order:-1}
+    section{padding:60px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#inicio" aria-label="IntelMax — Soluções Tecnológicas">
+      <img src="assets/logo-horizontal.png" alt="IntelMax — Soluções Tecnológicas" style="height:44px;width:auto">
+    </a>
+    <nav>
+      <button class="menu-toggle" aria-label="Abrir menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+      <ul id="menu">
+        <li><a href="#produto">O Produto</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#modelos">Modelos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+    <a class="btn" href="#contato">Solicitar Orçamento</a>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="container">
+    <div>
+      <h1>Proteja seu estoque de alto valor contra <span>furtos e assaltos</span></h1>
+      <p>O <strong>Armário Inteligente IntelMax</strong> é um cofre modular com abertura por biometria, monitoramento em tempo real e integração com CFTV e alarme — desenvolvido para lojas, quiosques e escritórios que não podem correr riscos.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#contato">Fale com um especialista</a>
+        <a class="btn ghost" href="#como-funciona">Veja como funciona</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>100%</strong><span>das operações registradas</span></div>
+        <div><strong>24/7</strong><span>monitoramento via web</span></div>
+        <div><strong>150+</strong><span>aparelhos protegidos por unidade</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <figure class="hero-photo">
+        <img src="assets/armario-8-portas.jpg" alt="Armário Inteligente IntelMax — modelo 8 portas" width="614" height="1200">
+        <figcaption>Modelo 8 portas em operação</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="produto">
+  <div class="container split">
+    <div>
+      <span class="tag">O Problema</span>
+      <h2>A criminalidade cresce. Seu estoque não pode ficar exposto.</h2>
+      <p class="lead">Diante da crescente criminalidade no país, faz-se necessário precaver-se frente a furtos e assaltos. O Armário Inteligente é uma proposta eficiente para minimizar os prejuízos decorrentes da violência.</p>
+    </div>
+    <div>
+      <div class="problem-card">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div>
+          <h3>Estoque de alto valor</h3>
+          <p>Smartphones e eletrônicos são os alvos preferidos em assaltos a lojas — e representam o maior prejuízo.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <h3>Cofres comuns não bastam</h3>
+          <p>Sem controle de acesso individual, registro de operações ou resposta a situações de risco.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="ico">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div>
+          <h3>Cada segundo importa</h3>
+          <p>Em um assalto, a integridade dos colaboradores depende de uma resposta rápida e silenciosa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" style="background:var(--white)">
+  <div class="container">
+    <span class="tag">Como Funciona</span>
+    <h2>Simples para sua equipe. Impenetrável para criminosos.</h2>
+    <p class="lead">Operação fácil e intuitiva por display touchscreen, em três passos.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11c0-3 2-5 5-5M12 11v3M7 11a5 5 0 0 1 1-3M12 21a9 9 0 0 0 9-9M4 15a9 9 0 0 0 1 3"/><circle cx="12" cy="11" r="1"/></svg>
+        </div>
+        <h3>Identifique-se</h3>
+        <p>Passe o cartão de proximidade ou insira a biometria nos locais indicados. Somente pessoas autorizadas acessam.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Selecione a porta</h3>
+        <p>Escolha a porta a ser aberta, confirme e aguarde a abertura conforme o temporizador configurado.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="ico">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1e7be0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l8-4 8 4-8 4-8-4z"/><path d="M4 8v8l8 4v-8M20 8v8l-8 4"/></svg>
+        </div>
+        <h3>Retire ou guarde</h3>
+        <p>Abra a porta, retire ou coloque o produto desejado e feche-a. Tudo registrado automaticamente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="recursos">
+  <div class="container">
+    <span class="tag" style="background:rgba(109,180,255,.15);color:#6db4ff">Recursos</span>
+    <h2>Tecnologia avançada em cada detalhe</h2>
+    <p class="lead">Muito mais que um cofre: um sistema completo de segurança para o seu negócio.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 11c0-3 2-5 5-5M12 11v3M7 11a5 5 0 0 1 1-3M12 21a9 9 0 0 0 9-9M4 15a9 9 0 0 0 1 3"/></svg></div>
+        <h3>Abertura por biometria ou cartão</h3>
+        <p>Sistema avançado com ajuste de abertura por biometria ou cartão de proximidade, com acesso restrito apenas a quem for designado.</p>
+      </div>
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Abertura temporizada</h3>
+        <p>Delimitação temporal para a abertura das portas, mutável conforme a conveniência do cliente — abertura imediata ou retardada.</p>
+      </div>
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg></div>
+        <h3>Monitoramento via web</h3>
+        <p>Todas as operações são registradas e podem ser acompanhadas em tempo real, de onde você estiver.</p>
+      </div>
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5c-5 0-9 4-10 7 1 3 5 7 10 7s9-4 10-7c-1-3-5-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>CFTV interna</h3>
+        <p>Possibilidade de inclusão de um sistema de CFTV interno, com tudo interligado ao sistema de câmeras da loja.</p>
+      </div>
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 4 8.5 9 9 5-.5 9-4 9-9V7l-9-5z"/><path d="M12 8v4M12 16h.01"/></svg></div>
+        <h3>Defesa ativa e silenciosa</h3>
+        <p>Mecanismos que entendem situações de risco e realizam reporte automático à central de monitoramento e alarme — de forma silenciosa, preservando a integridade dos colaboradores.</p>
+      </div>
+      <div class="feature">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6db4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div>
+        <h3>Sistema modular</h3>
+        <p>Adapta-se aos mais variados tipos de comércio — lojas, quiosques e escritórios — flexível de acordo com o espaço disponível do ambiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modelos">
+  <div class="container">
+    <span class="tag">Modelos</span>
+    <h2>Escolha o tamanho ideal para o seu negócio</h2>
+    <p class="lead">Sistema modular: cada porta possui área útil de armazenamento de 30 × 30 × 25 cm.</p>
+    <div class="models">
+      <div class="model">
+        <div class="model-visual">
+          <img src="assets/render-ambiente-4p.jpg" alt="Armário Inteligente IntelMax — modelo 4 portas" loading="lazy">
+        </div>
+        <div class="model-body">
+          <h3>Modelo 4 Portas</h3>
+          <p class="cap">Capacidade: aprox. 100 aparelhos</p>
+          <table class="spec-table">
+            <tr><td>Altura</td><td>95 cm</td></tr>
+            <tr><td>Largura</td><td>65 cm</td></tr>
+            <tr><td>Profundidade</td><td>30 cm</td></tr>
+            <tr><td>Área útil por porta</td><td>30 × 30 × 25 cm</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="model">
+        <div class="model-visual">
+          <img src="assets/render-ambiente-6p.jpg" alt="Armário Inteligente IntelMax — modelo 6 portas" loading="lazy">
+        </div>
+        <div class="model-body">
+          <h3>Modelo 6 Portas</h3>
+          <p class="cap">Capacidade: aprox. 150 aparelhos</p>
+          <table class="spec-table">
+            <tr><td>Altura</td><td>130 cm</td></tr>
+            <tr><td>Largura</td><td>65 cm</td></tr>
+            <tr><td>Profundidade</td><td>30 cm</td></tr>
+            <tr><td>Área útil por porta</td><td>30 × 30 × 25 cm</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p class="model-note">Precisa de uma configuração diferente? O sistema modular permite personalizar o armário para o seu espaço.</p>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-text">
+        <h2>Pronto para proteger o seu estoque?</h2>
+        <p>Fale com a nossa equipe e receba uma proposta personalizada para o seu negócio. Atendemos lojas, quiosques, escritórios e redes de varejo.</p>
+        <a class="btn" href="mailto:contato@intelmax.com.br?subject=Or%C3%A7amento%20Arm%C3%A1rio%20Inteligente">Solicitar orçamento</a>
+      </div>
+      <img class="cta-img" src="assets/render-4-portas.jpg" alt="Armário Inteligente IntelMax — detalhe do modelo 4 portas" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img src="assets/logo-horizontal-dark.png" alt="IntelMax — Soluções Tecnológicas" style="height:38px;width:auto">
+    <span>© 2026 IntelMax. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+</body>
+</html>
