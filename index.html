@@ -60,6 +60,9 @@
   .hero-stats strong{display:block;font-size:1.6rem;color:#6db4ff}
   .hero-stats span{font-size:.85rem;color:#9db8d8}
   .hero-art{display:flex;justify-content:center}
+  .hero-photo{position:relative;margin:0}
+  .hero-photo img{height:440px;width:auto;border-radius:18px;border:1px solid rgba(109,180,255,.25);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+  .hero-photo figcaption{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(2,19,34,.75);backdrop-filter:blur(4px);color:#c7d8ee;font-size:.78rem;padding:.35rem .9rem;border-radius:999px;border:1px solid rgba(109,180,255,.25)}
 
   /* Problema */
   .split{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
@@ -158,34 +161,10 @@
       </div>
     </div>
     <div class="hero-art">
-      <!-- Ilustração do armário inteligente -->
-      <svg width="320" height="380" viewBox="0 0 320 380" fill="none" aria-hidden="true">
-        <rect x="40" y="10" width="240" height="360" rx="10" fill="#e8f0fa"/>
-        <rect x="52" y="22" width="216" height="62" rx="6" fill="#0a1f3c"/>
-        <rect x="64" y="34" width="70" height="38" rx="4" fill="#1e7be0" opacity=".9"/>
-        <text x="99" y="57" font-size="9" fill="#fff" text-anchor="middle" font-family="sans-serif" font-weight="bold">TOUCHSCREEN</text>
-        <rect x="160" y="40" width="26" height="26" rx="4" fill="#173b63"/>
-        <circle cx="173" cy="53" r="6" fill="#3ddc84"/>
-        <rect x="206" y="38" width="40" height="30" rx="4" fill="#173b63"/>
-        <g stroke="#6db4ff" stroke-width="2.5" stroke-linecap="round" fill="none">
-          <path d="M220 58c3-3 9-3 12 0M216 53c6-6 14-6 20 0"/>
-        </g>
-        <circle cx="226" cy="61" r="1.8" fill="#6db4ff"/>
-        <g fill="#ffffff" stroke="#c3d5ea" stroke-width="2">
-          <rect x="52" y="96" width="104" height="128" rx="6"/>
-          <rect x="164" y="96" width="104" height="128" rx="6"/>
-          <rect x="52" y="232" width="104" height="128" rx="6"/>
-          <rect x="164" y="232" width="104" height="128" rx="6"/>
-        </g>
-        <g fill="#1e7be0">
-          <circle cx="104" cy="160" r="5"/><circle cx="216" cy="160" r="5"/>
-          <circle cx="104" cy="296" r="5"/><circle cx="216" cy="296" r="5"/>
-        </g>
-        <g stroke="#1e7be0" stroke-width="3" stroke-linecap="round" opacity=".6">
-          <path d="M292 60c8-8 8-20 0-28M302 68c13-13 13-31 0-44"/>
-          <path d="M28 60c-8-8-8-20 0-28M18 68c-13-13-13-31 0-44"/>
-        </g>
-      </svg>
+      <figure class="hero-photo">
+        <img src="assets/armario-8-portas.jpg" alt="Armário Inteligente IntelMax — modelo 8 portas" width="614" height="1200">
+        <figcaption>Modelo 8 portas em operação</figcaption>
+      </figure>
     </div>
   </div>
 </section>
