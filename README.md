@@ -4,7 +4,8 @@ Landing page institucional da IntelMax, apresentando o **Armário Inteligente**:
 
 ## Estrutura
 
-- `index.html` — página única, auto-contida (HTML + CSS + SVG inline, sem dependências externas).
+- `index.html` — página única (HTML + CSS + SVG inline, sem dependências externas).
+- `assets/` — logotipos oficiais em PNG com fundo transparente (extraídos do manual da marca) e favicon.
 
 ## Como visualizar
 
